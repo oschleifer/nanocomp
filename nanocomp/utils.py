@@ -90,7 +90,7 @@ def custom_formatter(prog):
 
 def get_args():
     epilog = """EXAMPLES:
-    NanoComp --bam alignment1.bam alignment2.bam --outdir compare-runs
+    NanoComp --bam alignment1.bam alignment2.bam alignment3.bam --outdir compare-runs
     NanoComp --fastq reads1.fastq.gz reads2.fastq.gz reads3.fastq.gz  --names run1 run2 run3
     """
     parser = ArgumentParser(
