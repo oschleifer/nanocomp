@@ -29,7 +29,7 @@ setup(
         "Programming Language :: Python :: 3.5",
     ],
     keywords="nanopore sequencing plotting quality control",
-    packages=find_packages() + ["scripts"],
+    packages=find_packages() + ["nanocomp/scripts"],
     python_requires=">=3",
     install_requires=[
         "pandas",
