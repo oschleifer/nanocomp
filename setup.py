@@ -14,8 +14,8 @@ setup(
     description="Comparing runs of Oxford Nanopore sequencing data and alignments",
     long_description=open(path.join(here, "README.md")).read(),
     long_description_content_type="text/markdown",
-    url="https://github.com/wdecoster/NanoComp",
-    author="Wouter De Coster",
+    url="https://github.com/oschleifer/nanocomp",
+    author="adapted from Wouter De Coster",
     author_email="decosterwouter@gmail.com",
     license="MIT",
     classifiers=[
