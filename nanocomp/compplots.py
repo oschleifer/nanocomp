@@ -314,7 +314,7 @@ def overlay_histogram(df, path, settings):
         settings["colors"] if settings["colors"] else cycle(plotly.colors.DEFAULT_PLOTLY_COLORS)
     )
 
-    hist = Plot(path=path + "NanoComp_OverlayHistogram.html", title="Histogram of read lengths")
+    hist = Plot(path=path + "NanoComp_GroupedHistogram.html", title="Histogram of read lengths")
     hist.html, hist.fig = plot_overlay_histogram(df, palette, column="lengths", title=hist.title)
     hist.save(settings)
 
