@@ -273,7 +273,7 @@ def get_args():
     )
     mtarget.add_argument(
         "--pickle",
-        help="Data is in one or more pickle file(s) from using nanocomp/nanocomp2.",
+        help="Data is in one or more pickle file(s) from using nanocomp/nanocomp.",
         nargs="+",
         metavar="file",
     )
