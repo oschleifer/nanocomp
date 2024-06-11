@@ -46,7 +46,7 @@ setup(
     include_package_data=True,
     entry_points={
         "console_scripts": [
-            "NanoComp=NanoComp/nanocomp.NanoComp:main",
+            "nanocomp=nanocomp2.NanoComp:main",
         ],
     },
 )

@@ -1,8 +1,8 @@
 import pickle
 import nanoget
 from nanoplot.filteroptions import filter_and_transform_data
-import nanocomp.utils as utils
-import nanocomp.compplots as compplots
+import nanocomp2.utils as utils
+import nanocomp2.compplots as compplots
 import numpy as np
 import logging
 from nanomath import write_stats
