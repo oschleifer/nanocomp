@@ -35,7 +35,7 @@ def stats2html(statsf):
     return pd.DataFrame(v, index=df["feature"]).to_html(header=False)
 
 
-def init_logs(args, tool="NanoComp"):
+def init_logs(args, tool="nanocomp"):
     """Initiate log file and log arguments."""
     start_time = dt.fromtimestamp(time()).strftime("%Y%m%d_%H%M")
     logname = os.path.join(args.outdir, args.prefix + tool + "_" + start_time + ".log")
@@ -90,8 +90,8 @@ def custom_formatter(prog):
 
 def get_args():
     epilog = """EXAMPLES:
-    NanoComp --bam alignment1.bam alignment2.bam alignment3.bam --outdir compare-runs
-    NanoComp --fastq reads1.fastq.gz reads2.fastq.gz reads3.fastq.gz  --names run1 run2 run3
+    nanocomp --bam alignment1.bam alignment2.bam alignment3.bam --outdir compare-runs
+    nanocomp --fastq reads1.fastq.gz reads2.fastq.gz reads3.fastq.gz  --names run1 run2 run3
     """
     parser = ArgumentParser(
         description="Compares long read sequencing datasets.",
@@ -106,7 +106,7 @@ def get_args():
         "--version",
         help="Print version and exit.",
         action="version",
-        version="NanoComp {}".format(__version__),
+        version="nanocomp {}".format(__version__),
     )
     general.add_argument(
         "-t",
@@ -273,7 +273,7 @@ def get_args():
     )
     mtarget.add_argument(
         "--pickle",
-        help="Data is in one or more pickle file(s) from using NanoComp/NanoPlot.",
+        help="Data is in one or more pickle file(s) from using nanocomp/nanocomp2.",
         nargs="+",
         metavar="file",
     )
