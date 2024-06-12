@@ -29,7 +29,7 @@ setup(
         "Programming Language :: Python :: 3.5",
     ],
     keywords="nanopore sequencing plotting quality control",
-    packages=find_packages() + ["nanocomp/scripts"],
+    packages=find_packages() + ["scripts"],
     python_requires=">=3",
     install_requires=[
         "pandas",
@@ -41,7 +41,7 @@ setup(
         "plotly>=3.4.2",
         "pyarrow",
     ],
-    package_data={"NanoComp": []},
+    package_data={"NanoComp": ["nanocomp", "scripts"]},
     package_dir={"NanoComp": "NanoComp"},
     include_package_data=True,
     entry_points={
