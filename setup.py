@@ -41,7 +41,7 @@ setup(
         "plotly>=3.4.2",
         "pyarrow",
     ],
-    package_data={"NanoComp": ["nanocomp", "scripts"]},
+    package_data={"NanoComp": []},
     package_dir={"": "nanocomp"},
     include_package_data=True,
     entry_points={
