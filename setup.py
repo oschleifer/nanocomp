@@ -9,7 +9,7 @@ here = path.abspath(path.dirname(__file__))
 __version__ = "1.23.1"
 
 setup(
-    name="nanocomp",
+    name="NanoComp",
     version=__version__,  # noqa F821
     description="Comparing runs of Oxford Nanopore sequencing data and alignments",
     long_description=open(path.join(here, "README.md")).read(),
@@ -41,12 +41,12 @@ setup(
         "plotly>=3.4.2",
         "pyarrow",
     ],
-    package_data={"nanocomp": ['nanocomp/*.py']},
-    package_dir={"": "nanocomp"},
+    package_data={"NanoComp": []},
+    package_dir={"NanoComp": "NanoComp"},
     include_package_data=True,
     entry_points={
         "console_scripts": [
-            "nanocomp=nanocomp/NanoComp:main",
+            "NanoComp=nanocomp.NanoComp:main",
         ],
     },
 )
