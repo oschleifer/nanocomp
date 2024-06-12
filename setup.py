@@ -42,7 +42,7 @@ setup(
         "pyarrow",
     ],
     package_data={"NanoComp": ["nanocomp", "scripts"]},
-    package_dir={"NanoComp": "NanoComp"},
+    package_dir={"nanocomp": "../NanoComp"},
     include_package_data=True,
     entry_points={
         "console_scripts": [
