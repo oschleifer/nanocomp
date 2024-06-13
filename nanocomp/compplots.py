@@ -420,8 +420,8 @@ def plot_overlay_histogram(
         counts, bins = np.array(
             df.loc[df["dataset"] == d, column],
             # bins=bins,
-            density=density,
-            weights=df.loc[df["dataset"] == d, weights_column] if weights_column else None,
+            # density=density,
+            # weights=df.loc[df["dataset"] == d, weights_column] if weights_column else None,
         )
         data.append(
             go.Scatter(
