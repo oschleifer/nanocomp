@@ -315,7 +315,7 @@ def overlay_histogram(df, path, settings):
     )
 
     hist = Plot(path=path + "NanoComp_GroupedLinePlot.html", title="Line Plot of read lengths")
-    hist.html, hist.fig = plot_overlay_histogram(df, palette, column="lengths", title=hist.title)
+    hist.html, hist.fig = plot_line(df, palette, column="lengths", title=hist.title)
     hist.save(settings)
 
     hist_norm = Plot(
@@ -408,6 +408,26 @@ def overlay_histogram_phred(df, path, settings):
 
     return hist_phred
 
+def plot_line(
+    df, palette, column, title
+):
+    data = []
+    x_vals = max(round(int(np.amax(df.loc[:,column])) / 500), 10)
+
+    for d, c in zip(df["dataset"].unique(), palette):
+        counts, x_vals= np.arrange(df.loc[df["dataset"] == d, column])
+        data.append(
+            go.Scatter(
+                x= x_vals,
+                y=counts,
+                mode='lines',
+                opacity=0.4,
+                name=d,
+                hovertext= x_vals,
+                hovertemplate=None,
+                line=dict(color=c),
+            )
+        )
 
 def plot_overlay_histogram(
     df, palette, column, title, bins=None, density=False, weights_column=None
@@ -417,14 +437,14 @@ def plot_overlay_histogram(
         bins = max(round(int(np.amax(df.loc[:, column])) / 500), 10)
 
     for d, c in zip(df["dataset"].unique(), palette):
-        counts, bins = np.array(
+        counts, bins = np.histogram(
             df.loc[df["dataset"] == d, column],
-            # bins=bins,
-            # density=density,
-            # weights=df.loc[df["dataset"] == d, weights_column] if weights_column else None,
+            bins=bins,
+            density=density,
+            weights=df.loc[df["dataset"] == d, weights_column] if weights_column else None,
         )
         data.append(
-            go.Scatter(
+            go.Bar(
                 x=bins[1:],
                 y=counts,
                 opacity=0.4,
@@ -435,7 +455,7 @@ def plot_overlay_histogram(
             )
         )
 
-    fig = go.Figure({"data": data, "layout": go.Layout(title=title)})
+    fig = go.Figure({"data": data, "layout": go.Layout(barmode="grouped", title=title, bargap=0.3)})
     if density:
         yaxis_title = "Density"
     elif weights_column:
