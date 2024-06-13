@@ -435,7 +435,7 @@ def plot_overlay_histogram(
             )
         )
 
-    fig = go.Figure({"data": data, "layout": go.Scatter(x=bins, y=counts, title=title)})
+    fig = go.Figure({"data": data, "layout": go.Scatter(x=bins, y=counts)})
     if density:
         yaxis_title = "Density"
     elif weights_column:
