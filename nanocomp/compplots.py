@@ -428,6 +428,11 @@ def plot_line(
                 line=dict(color=c),
             )
         )
+        
+    fig = go.Figure({"data": data, "layout": go.Layout(title=title)})
+    fig.update_layout(title_x=0.5, yaxis_title="Number of reads")
+
+    return fig.to_html(full_html=False, include_plotlyjs="cdn"), fig
 
 def plot_overlay_histogram(
     df, palette, column, title, bins=None, density=False, weights_column=None
@@ -455,7 +460,7 @@ def plot_overlay_histogram(
             )
         )
 
-    fig = go.Figure({"data": data, "layout": go.Layout(barmode="grouped", title=title, bargap=0.3)})
+    fig = go.Figure({"data": data, "layout": go.Layout(barmode="group", title=title, bargap=0.3)})
     if density:
         yaxis_title = "Density"
     elif weights_column:
