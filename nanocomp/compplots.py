@@ -424,7 +424,7 @@ def plot_overlay_histogram(
             weights=df.loc[df["dataset"] == d, weights_column] if weights_column else None,
         )
         data.append(
-            go.Bar(
+            go.Scatter(
                 x=bins[1:],
                 y=counts,
                 opacity=0.4,
@@ -435,7 +435,7 @@ def plot_overlay_histogram(
             )
         )
 
-    fig = go.Figure({"data": data, "layout": go.Scatter(x=bins, y=counts)})
+    fig = go.Figure({"data": data, "layout": go.Layout(title=title)})
     if density:
         yaxis_title = "Density"
     elif weights_column:
