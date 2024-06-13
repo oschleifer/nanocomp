@@ -419,7 +419,7 @@ def plot_overlay_histogram(
     for d, c in zip(df["dataset"].unique(), palette):
         counts, bins = np.array(
             df.loc[df["dataset"] == d, column],
-            bins=bins,
+            # bins=bins,
             density=density,
             weights=df.loc[df["dataset"] == d, weights_column] if weights_column else None,
         )
