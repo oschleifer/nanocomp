@@ -417,7 +417,7 @@ def plot_overlay_histogram(
         bins = max(round(int(np.amax(df.loc[:, column])) / 500), 10)
 
     for d, c in zip(df["dataset"].unique(), palette):
-        counts, bins = np.histogram(
+        counts, bins = np.array(
             df.loc[df["dataset"] == d, column],
             bins=bins,
             density=density,
