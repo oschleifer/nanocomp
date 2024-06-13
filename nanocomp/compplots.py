@@ -415,7 +415,9 @@ def plot_line(
     x_vals = max(round(int(np.amax(df.loc[:,column])) / 500), 10)
 
     for d, c in zip(df["dataset"].unique(), palette):
-        counts, x_vals= np.arange(df.loc[df["dataset"] == d, column])
+        counts, x_vals= np.arange(
+            df.loc[df["dataset"] == d, column],
+        )
         data.append(
             go.Scatter(
                 x= x_vals,
@@ -460,7 +462,7 @@ def plot_overlay_histogram(
             )
         )
 
-    fig = go.Figure({"data": data, "layout": go.Layout(barmode="group", title=title, bargap=0.3)})
+    fig = go.Figure({"data": data, "layout": go.Layout(barmode="group", title=title, bargap=0.1)})
     if density:
         yaxis_title = "Density"
     elif weights_column:
