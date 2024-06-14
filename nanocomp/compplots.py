@@ -465,7 +465,7 @@ def plot_overlay_histogram(
         )
 
     fig = go.Figure({"data": data, "layout": go.Layout(barmode="group", title=title, bargap=0.1)})
-    fig = ff.create_distplot(df, group_labels, palette, show_rug=False)
+    fig = ff.create_distplot(df.loc[df["dataset"],column], group_labels, palette, show_rug=False)
     if density:
         yaxis_title = "Density"
     elif weights_column:
