@@ -465,7 +465,7 @@ def plot_overlay_histogram(
             )
         )
         data.append(
-            px.line(
+            go.Scatter(
                 x=bins[1:],
                 y=counts
             )
