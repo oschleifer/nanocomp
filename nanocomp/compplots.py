@@ -5,8 +5,6 @@ import logging
 import numpy as np
 import plotly
 import plotly.graph_objs as go
-import plotly.figure_factory as ff
-import plotly.express as px
 import sys
 from itertools import cycle
 
@@ -410,43 +408,13 @@ def overlay_histogram_phred(df, path, settings):
 
     return hist_phred
 
-def plot_line(
-    df, palette, column, title
-):
-    data = []
-    x_vals = max(round(int(np.amax(df.loc[:,column])) / 500), 10)
-
-    for d, c in zip(df["dataset"].unique(), palette):
-        counts, x_vals= np.histogram(
-            df.loc[df["dataset"] == d, column],
-        )
-        data.append(
-            go.Bar(
-                x= x_vals,
-                y=counts,
-                mode='lines',
-                opacity=0.4,
-                name=d,
-                hovertext= x_vals,
-                hovertemplate=None,
-                line=dict(color=c),
-            )
-        )
-        
-    fig = go.Figure({"data": data, "layout": go.Layout(title=title)})
-    fig.update_layout(title_x=0.5, yaxis_title="Number of reads")
-
-    return fig.to_html(full_html=False, include_plotlyjs="cdn"), fig
-
 def plot_overlay_histogram(
     df, palette, column, title, bins=None, density=False, weights_column=None
 ):
     data = []
     if not bins:
-        bins = max(round(int(np.amax(df.loc[:, column])) / 500), 5)
-    group_labels = []
+        bins = max(round(int(np.amax(df.loc[:, column])) / 100), 20)
     for d, c in zip(df["dataset"].unique(), palette):
-        group_labels.append(d)
         counts, bins = np.histogram(
             df.loc[df["dataset"] == d, column],
             bins=bins,
@@ -476,7 +444,6 @@ def plot_overlay_histogram(
         )
 
     fig = go.Figure({"data": data, "layout": go.Layout(barmode="group", title=title, bargap=0.1)})
-    # fig = ff.create_distplot(df["dataset"].unique(), group_labels, palette, show_rug=False)
     if density:
         yaxis_title = "Density"
     elif weights_column:
