@@ -443,7 +443,7 @@ def plot_overlay_histogram(
 ):
     data = []
     if not bins:
-        bins = max(round(int(np.amax(df.loc[:, column])) / 100), 10)
+        bins = max(round(int(np.amax(df.loc[:, column])) / 500), 5)
     group_labels = []
     for d, c in zip(df["dataset"].unique(), palette):
         group_labels.append(d)
