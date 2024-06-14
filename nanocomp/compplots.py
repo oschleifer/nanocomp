@@ -5,6 +5,7 @@ import logging
 import numpy as np
 import plotly
 import plotly.graph_objs as go
+import plotly.figure_factory as ff
 import sys
 from itertools import cycle
 
@@ -415,11 +416,11 @@ def plot_line(
     x_vals = max(round(int(np.amax(df.loc[:,column])) / 500), 10)
 
     for d, c in zip(df["dataset"].unique(), palette):
-        counts, x_vals= np.arange(
+        counts, x_vals= np.histogram(
             df.loc[df["dataset"] == d, column],
         )
         data.append(
-            go.Scatter(
+            go.Bar(
                 x= x_vals,
                 y=counts,
                 mode='lines',
@@ -432,6 +433,7 @@ def plot_line(
         )
         
     fig = go.Figure({"data": data, "layout": go.Layout(title=title)})
+    fig = ff.create_distplot(data, show_rug=False)
     fig.update_layout(title_x=0.5, yaxis_title="Number of reads")
 
     return fig.to_html(full_html=False, include_plotlyjs="cdn"), fig
