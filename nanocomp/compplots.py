@@ -316,7 +316,7 @@ def overlay_histogram(df, path, settings):
     )
 
     hist = Plot(path=path + "NanoComp_GroupedLinePlot.html", title="Line Plot of read lengths")
-    hist.html, hist.fig = plot_line(df, palette, column="lengths", title=hist.title)
+    hist.html, hist.fig = plot_overlay_histogram(df, palette, column="lengths", title=hist.title)
     hist.save(settings)
 
     hist_norm = Plot(
@@ -433,7 +433,6 @@ def plot_line(
         )
         
     fig = go.Figure({"data": data, "layout": go.Layout(title=title)})
-    fig = ff.create_distplot(data, show_rug=False)
     fig.update_layout(title_x=0.5, yaxis_title="Number of reads")
 
     return fig.to_html(full_html=False, include_plotlyjs="cdn"), fig
@@ -465,6 +464,7 @@ def plot_overlay_histogram(
         )
 
     fig = go.Figure({"data": data, "layout": go.Layout(barmode="group", title=title, bargap=0.1)})
+    fig = ff.create_distplot(data, show_rug=False)
     if density:
         yaxis_title = "Density"
     elif weights_column:
