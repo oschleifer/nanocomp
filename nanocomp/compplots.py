@@ -462,7 +462,9 @@ def plot_overlay_histogram(
                 hovertext=bins[1:],
                 hovertemplate=None,
                 marker=dict(color=c),
-            ),
+            )
+        )
+        data.append(
             px.line(
                 x=bins[1:],
                 y=counts
