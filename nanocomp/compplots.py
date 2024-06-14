@@ -453,21 +453,25 @@ def plot_overlay_histogram(
             density=density,
             weights=df.loc[df["dataset"] == d, weights_column] if weights_column else None,
         )
-        data.append(
-            go.Bar(
-                x=bins[1:],
-                y=counts,
-                opacity=0.4,
-                name=d,
-                hovertext=bins[1:],
-                hovertemplate=None,
-                marker=dict(color=c),
-            )
-        )
+        # data.append(
+        #     go.Bar(
+        #         x=bins[1:],
+        #         y=counts,
+        #         opacity=0.4,
+        #         name=d,
+        #         hovertext=bins[1:],
+        #         hovertemplate=None,
+        #         marker=dict(color=c),
+        #     )
+        # )
         data.append(
             go.Scatter(
                 x=bins[1:],
-                y=counts
+                y=counts,
+                name=d,
+                hovertext=bins[1:],
+                hovertemplate=None,
+                marker=dict(color=c)
             )
         )
 
