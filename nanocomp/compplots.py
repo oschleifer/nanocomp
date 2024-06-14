@@ -443,8 +443,9 @@ def plot_overlay_histogram(
     data = []
     if not bins:
         bins = max(round(int(np.amax(df.loc[:, column])) / 500), 10)
-
+    group_labels = []
     for d, c in zip(df["dataset"].unique(), palette):
+        group_labels.append(d)
         counts, bins = np.histogram(
             df.loc[df["dataset"] == d, column],
             bins=bins,
@@ -464,7 +465,7 @@ def plot_overlay_histogram(
         )
 
     fig = go.Figure({"data": data, "layout": go.Layout(barmode="group", title=title, bargap=0.1)})
-    fig = ff.create_distplot(data, show_rug=False)
+    fig = ff.create_distplot(data, group_labels, palette, show_rug=False)
     if density:
         yaxis_title = "Density"
     elif weights_column:
